@@ -1,0 +1,4 @@
+- install docker
+- connect to swarm
+- copy config files
+- start nodes

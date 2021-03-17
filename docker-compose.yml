@@ -1,18 +1,20 @@
 version: "3"
 services:
-  master:
-    image: "master:latest"
+  spark-master:
+    image: "dasilva_master:latest"
     ports:
       - "8080:8080"
+      - "7077:7077"
+      - "8888:8888"
     networks:
       - spark-net
     deploy:
       placement:
+        # set node labels using docker node update --label-add key=value <NODE ID> from swarm manager
         constraints:
           - node.labels.role==master
-  
-  worker:
-    image: "worker:latest"
+  spark-worker:
+    image: "sdesilva26/spark_worker:0.0.2"
     ports:
       - "8081:8081"
     environment:
@@ -20,12 +22,12 @@ services:
       - MEMORY=2G
     deploy:
       placement:
+        # set node labels using docker node update --label-add key=value <NODE ID> from swarm manager
         constraints:
           - node.labels.role==worker
-        replicas: 2
+      replicas: 3
     networks:
       - spark-net
-
 networks:
   spark-net:
     driver: overlay

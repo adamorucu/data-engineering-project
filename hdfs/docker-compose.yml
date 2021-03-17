@@ -1,0 +1,41 @@
+version: "3"
+services:
+  hadoop-master:
+    image: "newnius/hadoop:2.7.4"
+    ports:
+      - "50070:50070"
+      - "9870:9870"
+    networks:
+      - sparkdemo_spark-net
+    volumes:
+        "/home/ubuntu/project-repo/hdfs/config:/config/hadoop"
+    volumes:
+      - type: bind
+        source: "/data/hadoop/hdfs"
+        target: "/tmp/hadoop-root"
+    volumes:
+      - type: bind
+        source: "/data/hadoop/logs"
+        target: "/usr/local/hadoop/logs"
+
+version: "3"
+services:
+  hadoop-slave:
+    image: "newnius/hadoop:2.7.4"
+    ports:
+      - "50075:50075"
+      - "9870:9870"
+    networks:
+      - sparkdemo_spark-net
+    volumes:
+      - type: bind
+        source: "/home/ubuntu/volume/config"
+        target: "/config/hadoop"
+    volumes:
+      - type: bind
+        source: "/home/ubuntu/volume/data/hadoop/hdfs"
+        target: "/tmp/hadoop-root"
+    volumes:
+      - type: bind
+        source: "/home/ubuntu/volume/data/hadoop/logs"
+        target: "/usr/local/hadoop/logs"
