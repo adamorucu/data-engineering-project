@@ -1,0 +1,11 @@
+Step 1:
+
+Do setup/installation of docker from A4 instructions Task 1.
+
+Step 2:
+
+Run "docker swarm join-token worker" on master node. Then run the command from the output on the worker to join the swarm.
+Run "docker node ls" to see that the node is in the swarm. 
+Run "docker node update --label-add role=worker CONTAINER_ID" on master node but with workers container id.(not sure if necessary) - yes. is necessary
+
+Run "docker service scale sparkdemo_spark-worker=X" where X is nr of total workers.
