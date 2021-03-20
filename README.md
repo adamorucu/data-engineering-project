@@ -1,7 +1,7 @@
 # Todo
-- [ ] Setup spark cluster
-- [ ] setup hdfs cluster
-- [ ] replicate data
-- [ ] preprocess
-- [ ] analyse data
+- [X] Setup spark cluster
+- [X] setup hdfs cluster
+- [X] replicate data
+- [X] preprocess
+- [X] analyse data
 - [ ] write report
